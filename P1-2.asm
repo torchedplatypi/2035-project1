@@ -1,6 +1,6 @@
 # P1-2
-# Student Name:
-# Date:
+# Student Name: Alex Moore
+# Date: Feb 08 2015
 #
 #     I c o n   M a t c h
 #

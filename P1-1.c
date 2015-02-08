@@ -1,6 +1,6 @@
 /*      I c o n   M a t c h
-Student Name:
-Date:
+Student Name: Alex Moore
+Date: Feb 08 2015
 
 ECE 2035 Project 1-1
 
