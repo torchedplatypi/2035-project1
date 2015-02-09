@@ -37,6 +37,11 @@ int main(int argc, char *argv[]) {
   }
 
   /* Your icon matching code goes here */
+  for(int candndx = 0, candndx < 8, candndx++){
+  	for(int periconndx = 0, periconndx < 144, periconndx++){	
+		pixelcity = Candidates[0]
+	}
+  }
 
   printf("The matching icon is %d\n", Match);
   exit(0);
