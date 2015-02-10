@@ -37,19 +37,22 @@ int main(int argc, char *argv[]) {
   }
 
   /* Your icon matching code goes here */
-  int[] checklist = {0,1,2,3,4,5,6,7};
-  for(int candndx = 1; candndx < 9; candndx++){ //will be multiplying, so ndx start at 1
-  	for(int periconndx = 0; periconndx < 144; periconndx++){ //for each icon, i'll be traversing 144 spots	
+  int checklist[] = {0,1,2,3,4,5,6,7};
+  int candndx, periconndx, i, keyPix, candPix;
+  for(candndx = 1; candndx < 9; candndx++){ //will be multiplying, so ndx start at 1
+  	for(periconndx = 0; periconndx < 144; periconndx++){ //for each icon, i'll be traversing 144 spots	
 		keyPix = periconndx;
 		candPix = periconndx*candndx;
 		if(keyPix != candPix){
-			checklist[candndx] = 0;
+			checklist[candndx] = -1;
 		}
 	}
   }
 
-  for(int i = 0; i <8; i++){
-	Match = Match + checklist[i];
+  for(i = 0; i <8; i++){
+	if(checklist[i] > -1){
+		Match = i; 
+	}
   }
 
   printf("The matching icon is %d\n", Match);
