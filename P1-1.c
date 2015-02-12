@@ -37,9 +37,22 @@ int main(int argc, char *argv[]) {
   }
 
   /* Your icon matching code goes here */
-  for(int candndx = 0, candndx < 8, candndx++){
-  	for(int periconndx = 0, periconndx < 144, periconndx++){	
-		pixelcity = Candidates[0]
+  int checklist[] = {0,1,2,3,4,5,6,7};
+  int candndx, periconndx, i, keyPix, candPix;
+  for(candndx = 0; candndx < 8; candndx++){ //will be multiplying, so ndx start at 1
+  	for(periconndx = 0; periconndx < 144; periconndx++){ //for each icon, i'll be traversing 144 spots	
+		keyPix = periconndx;
+		candPix = periconndx+candndx*144;
+		printf("Key Pixel: %d\nCandidate Pixel: %d\nCandidate: %d\n\n",keyPix,candPix,candndx);
+		if(keyPix != candPix){
+			checklist[candndx] = -1;
+		}
+	}
+  }
+
+  for(i = 0; i <8; i++){
+	if(checklist[i] > -1){
+		Match = i; 
 	}
   }
 
