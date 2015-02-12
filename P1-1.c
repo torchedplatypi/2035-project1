@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
 
   for(i = 0; i <8; i++){
 	if(checklist[i] > -1){
-		Match = i; 
+		Match = i+1; 
 	}
   }
 
