@@ -37,22 +37,28 @@ int main(int argc, char *argv[]) {
   }
 
   /* Your icon matching code goes here */
-  int checklist[] = {0,1,2,3,4,5,6,7};
-  int candndx, periconndx, i, keyPix, candPix;
-  for(candndx = 0; candndx < 8; candndx++){ //will be multiplying, so ndx start at 1
-  	for(periconndx = 0; periconndx < 144; periconndx++){ //for each icon, i'll be traversing 144 spots	
-		keyPix = periconndx;
-		candPix = periconndx+candndx*144;
-		printf("Key Pixel: %d\nCandidate Pixel: %d\nCandidate: %d\n\n",keyPix,candPix,candndx);
-		if(keyPix != candPix){
-			checklist[candndx] = -1;
+  /*I ran out of time before coming up with an actual efficient algorithm.
+    This brute force compares each candidate and icon with the key icon. */
+  int checklist[] = {0,1,2,3,4,5,6,7};  //will be used to keep track of which icons don't match
+  int candndx, periconndx, i, keyPix, candPix; /* initialize variables. 
+  candndx = tracks which Candidate icon I'm on. periconndx = tracks which pixel I'm on in both Key and current Candidate
+  i = dummy index variable for later iteration through the checklist array. keyPix = Key Pixel index
+  candPix = candidate Pixel index */
+  for(candndx = 0; candndx < 8; candndx++){ //increments through each of the 8 candidate icons
+  	for(periconndx = 0; periconndx < 144; periconndx++){ //for each icon, i'll be traversing 144 spots
+		keyPix = periconndx; //Iterate through the pixels in the key. Resets for each new candidate icon.
+		candPix = periconndx+candndx*144; //Add in a factor of 144 to get to whichever candidate I'm on.
+		//For Testing Purposes (commented out):
+		//printf("Key Pixel: %d\nCandidate Pixel: %d\nCandidate: %d\n\n",keyPix,candPix,candndx);
+		if(Pattern[keyPix] != Candidates[candPix]){ //compare numerical values at pixel indices
+			checklist[candndx] = -1; //any that don't match are eliminated
 		}
 	}
   }
 
-  for(i = 0; i <8; i++){
-	if(checklist[i] > -1){
-		Match = i; 
+  for(i = 0; i <8; i++){ //traverse checklist array
+	if(checklist[i] > -1){ //whichever candidate wasn't eliminated
+		Match = i; //is the matching icon.
 	}
   }
 
