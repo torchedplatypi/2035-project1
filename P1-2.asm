@@ -10,7 +10,7 @@
 .data
 CandBase: 	.alloc 1152
 PatternBase:	.alloc 144
-MatchChecks:	.alloc 2
+MatchChecks:	.word  0,0
 
 .text
 IconMatch:	addi	$1, $0, CandBase	# point to base of Candidates
@@ -18,12 +18,12 @@ IconMatch:	addi	$1, $0, CandBase	# point to base of Candidates
 
 		# your code goes here
 		#initialize variables i'll need
-		addi	$3,$0,476 #start index for finding color
+		addi	$3,$0,528 #start index for finding color
 		addi	$8,$0,576
 
 		#initial loop for colored pixel.
-FindColorLoop:	lw	$4,PatternBase($3)	#load pixel value
-		addi	$3,$3,-4		#decrement index
+FindColorLoop:	addi	$3,$3,-4		#decrement index
+		lw	$4,PatternBase($3)	#load pixel value
 		beq	$4,$0,FindColorLoop	#if black, loop.
 		
 		#once a pixel of color is found, I'll be here.
@@ -33,15 +33,16 @@ ColorFound:	mult	$5,$8			#calculate index
 		add	$6,$6,$3		#based on 7-0 index
 		lw	$7,CandBase($6)		#load candidate pix val
 		beq	$7,$4,PixelMatch
-		addi	$5,$5,-1		#decrement index
-JumpBack:	slt	$2,$5,$0
-		bne	$2,$0, IconsChecked	
+JumpBack:	addi	$5,$5,-1		#decrement index
+		slt	$27,$5,$0#REPLACE 27 WITH 2 AFTER WRITING STORAGE
+		bne	$27,$0, IconsChecked#REPLACE 27 WITH 2 AFTER STORAGE
 		j	ColorFound
 
 PixelMatch:	sb	$4,MatchChecks($5)
+		add	$2,$5,$0
 		j	JumpBack
 
-IconsChecked:	addi	$2,$0,0
+IconsChecked:	addi	$27,$0,0
 
 
 
